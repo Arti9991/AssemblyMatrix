@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
 
     //unsigned int start_time =  clock();
     
-    //Multiply(a, b, c, m, n, k);
+    //Multiply(a, b, c_m, m, n, k);
 
     //unsigned int end_time = clock(); 
     //unsigned int search_time2;
@@ -110,14 +110,14 @@ int main(int argc, char* argv[])
     //int cl = search_time1/CLOCKS_PER_SEC;
     
     //cout << search_time1 << endl;
-    
+    /*
     for (int i = 0; i < m * n; i++)
     {
-        //cout << c[i]<< "\t";
-        c_m[i] = c[i];
+        cout << c_m[i]<< "\t";
+        //c_m[i] = c[i];
         c[i] = 0;
     }
-    
+    */
     /*
     cout << "--------------------------------------";
     cout << endl;
@@ -149,7 +149,7 @@ int main(int argc, char* argv[])
     */
     int size = n * m;
 
-    float d = AverDef(c_m, c, size);
+    float d = AverDef(c, c_m, size);
     //cout << d << endl;
     //cout << endl;
     
