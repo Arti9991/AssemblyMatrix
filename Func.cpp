@@ -34,6 +34,7 @@ void MultiplyAsm(float* a, float* b, float* c, int m, int n, int k)
     int l = 0;
     int i = 0;
     int t = 0;
+    int k_i = 0;
     unsigned int start_time, end_time, search_time; 
     double proc = 0;
     double time = 0;
@@ -41,23 +42,33 @@ void MultiplyAsm(float* a, float* b, float* c, int m, int n, int k)
 
 
     start_time =  clock();
-    for (t = 0; t < 3; t++)
+    for (t = 0; t < 5; t++)
     {
-        while (l < m)
-        { 
-            i = 0;
-            while (i < n)
-            {   
-                Matrix(a + l, b + i, c + n * l + i, m, n, k);
+        k_i = 0;
+        while (k_i < k)
+        {
 
-                i = i + 8;
+            l = 0;
+            while (l < m)
+            {   
+                i = 0;
+                while (i < n)
+                {   
+
+                    Matrix(a + l + k_i * m, b + i + k_i * n, c + n * l + i, m, n, 128);
+
+                    i = i + 8;
+                }
+
+                l = l + 8; 
             }
-            l = l + 8; 
+        
+            k_i = k_i + 128;
         }
     }
     end_time = clock();
     time = (double)(end_time - start_time) / CLOCKS_PER_SEC; 
-    double tic = (m * n * k * 3) / 16;
+    double tic = (m * n * k * 5) / 16;
     proc = 100 * (tic / (46e8 * time));
     //cout << tic << endl;
 
